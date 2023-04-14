@@ -1,5 +1,5 @@
-import ExpensesCombine from "./components/ExpensesCombine";
-function App() {
+import ExpensesCombine from "./components/Expenses/ExpensesCombine";
+const App = () => {
   const expenses = [
     {
       id: "e1",
@@ -20,12 +20,18 @@ function App() {
       amount: 450,
       date: new Date(2021, 5, 12),
     },
+    {
+      id: "e5",
+      title: "Vampire Survivors (full version)",
+      amount: 6,
+      date: new Date(2021, 5, 12),
+    },
   ];
   return (
     <div>
       <ExpensesCombine items={expenses} />
     </div>
   );
-}
+};
 
 export default App;

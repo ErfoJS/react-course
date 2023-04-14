@@ -1,6 +1,6 @@
 import ExpenseItem from "./ExpenseItem";
-import "./ExpensesCombine.css";
-import Card from "./Card";
+import "./Styles/ExpensesCombine.css";
+import Card from "../UI/Card";
 function ExpensesCombine(props) {
   return (
     <Card className="expenses">
