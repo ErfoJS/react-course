@@ -1,5 +1,6 @@
 import ExpensesCombine from "./components/Expenses/ExpensesCombine";
 import NewExpense from "./components/NewExpense/NewExpense";
+
 const App = () => {
   const expenses = [
     {
@@ -28,9 +29,17 @@ const App = () => {
       date: new Date(2021, 5, 12),
     },
   ];
+  const NewExpenseHandler = (data) => {
+    const expensesData = {
+      ...data,
+    };
+    console.log(expensesData);
+  };
+
   return (
     <div>
-      <NewExpense />
+      <NewExpense onNewExpenseHandler={NewExpenseHandler} />
+
       <ExpensesCombine items={expenses} />
     </div>
   );
