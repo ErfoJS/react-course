@@ -1,13 +1,14 @@
 import ExpenseItem from "./ExpenseItem";
 import "./Styles/ExpensesCombine.css";
 import Card from "../UI/Card";
-import Filter from "../Filter/Filter.js";
+import Filter from "./ExpensesFilter.js";
 import { useState } from "react";
 
 function ExpensesCombine(props) {
   const [inputedYear, setYear] = useState("2020");
   const FilterDataHandler = (inputedYear) => {
     setYear(inputedYear);
+    console.log(inputedYear);
   };
   return (
     <div>
