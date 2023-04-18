@@ -6,21 +6,30 @@ import { useState } from "react";
 
 function ExpensesCombine(props) {
   const [inputedYear, setYear] = useState("2020");
+
   const FilterDataHandler = (inputedYear) => {
     setYear(inputedYear);
     console.log(inputedYear);
   };
+
+  const filterdExpenses = props.items.filter(
+    (expense) => expense.date.getFullYear() === +inputedYear
+  );
+
   return (
     <div>
       <Card className="expenses">
         <Filter yearDefault={inputedYear} onFilterHandler={FilterDataHandler} />
-        {props.items.map((expense) => (
-          <ExpenseItem
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {filterdExpenses.length === 0 && <p>No expenses found.</p>}
+        {filterdExpenses.length > 0 &&
+          filterdExpenses.map((expense) => (
+            <ExpenseItem
+              key={expense.id}
+              title={expense.title}
+              amount={expense.amount}
+              date={expense.date}
+            />
+          ))}
       </Card>
     </div>
   );
