@@ -16,20 +16,23 @@ function ExpensesCombine(props) {
     (expense) => expense.date.getFullYear() === +inputedYear
   );
 
+  let filterLogic = <p>No expenses found.</p>;
+  if (filterdExpenses.length > 0) {
+    filterLogic = filterdExpenses.map((expense) => (
+      <ExpenseItem
+        key={expense.id}
+        title={expense.title}
+        amount={expense.amount}
+        date={expense.date}
+      />
+    ));
+  }
+
   return (
     <div>
       <Card className="expenses">
         <Filter yearDefault={inputedYear} onFilterHandler={FilterDataHandler} />
-        {filterdExpenses.length === 0 && <p>No expenses found.</p>}
-        {filterdExpenses.length > 0 &&
-          filterdExpenses.map((expense) => (
-            <ExpenseItem
-              key={expense.id}
-              title={expense.title}
-              amount={expense.amount}
-              date={expense.date}
-            />
-          ))}
+        {filterLogic}
       </Card>
     </div>
   );
