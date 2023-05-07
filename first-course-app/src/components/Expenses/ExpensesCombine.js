@@ -4,6 +4,7 @@ import Card from "../UI/Card";
 import Filter from "./ExpensesFilter.js";
 import { useState } from "react";
 import ExpensesList from "./ExpensesList.js";
+import ExpensesChart from "./ExpensesChart.js";
 
 function ExpensesCombine(props) {
   const [inputedYear, setYear] = useState("2020");
@@ -18,17 +19,13 @@ function ExpensesCombine(props) {
   );
 
   return (
-    <li>
-      <div>
-        <Card className="expenses">
-          <Filter
-            yearDefault={inputedYear}
-            onFilterHandler={FilterDataHandler}
-          />
-          <ExpensesList items={filterdExpenses} />
-        </Card>
-      </div>
-    </li>
+    <div>
+      <Card className="expenses">
+        <Filter yearDefault={inputedYear} onFilterHandler={FilterDataHandler} />
+        <ExpensesChart expenses={filterdExpenses} />
+        <ExpensesList items={filterdExpenses} />
+      </Card>
+    </div>
   );
 }
 export default ExpensesCombine;
