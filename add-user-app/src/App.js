@@ -1,10 +1,10 @@
-import React from 'react';
-
+import React from "react";
+import UserForm from "./Components/UserForm";
 
 function App() {
   return (
     <div>
-
+      <UserForm />
     </div>
   );
 }
