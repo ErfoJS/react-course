@@ -1,20 +1,22 @@
 .form {    
 flex-wrap: wrap;
 margin-bottom: 1rem;
-text-align: left;
+
 }
 
 .form label {
+color: rgb(0, 0, 0);
 font-weight: bold;
-margin-bottom: 0.5rem;
+margin-bottom: 5px;
 display: block;
+
+
 }
 
 .form input {
 font: inherit;
-padding: 0.5rem;
 border: 1px solid #ccc;
-width: 30rem;
+width: 100%;
 max-width: 100%;
 height: 2rem;
 }
@@ -27,7 +29,7 @@ height: 2rem;
     background-color: #40005d;
     color: white;
     margin-right: 1rem;
-  
+    
     text-align: center;
 }
 
@@ -47,3 +49,20 @@ height: 2rem;
 .button.alternative:active {
     background-color: #ddb3f8;
 }
+
+.formSpace{
+    background: rgb(255, 255, 255);
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        margin: 2rem auto;
+        width: 45rem;
+        max-width: 95%;
+        border-radius: 12px;
+    }
+    
+
+   
+
+
+

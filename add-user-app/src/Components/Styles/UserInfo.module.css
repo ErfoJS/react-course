@@ -1,0 +1,11 @@
+.userInfoSpace{
+    padding: 5px;
+}
+
+.userInfoBorder{
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(192, 192, 192);
+    padding: 6px;
+    
+}
