@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserForm from "./Components/UserForm";
 import UserList from "./Components/Userlist";
 import Error from "./Components/UI/Error";
+import EmptyList from "./Components/EmptyList";
 
 const USERS_LIST_INITIAL = [
   {
@@ -13,10 +14,28 @@ const USERS_LIST_INITIAL = [
 
 function App() {
   const [newUser, setNewUser] = useState(USERS_LIST_INITIAL);
-  const [errorState, setErrorState] = useState();
+  const [errorState, setErrorState] = useState("");
+  const [emptyList, setEmptyList] = useState(false);
 
-  const saveUserDataHandler = (enteredUserData) => {
-    if (
+  const deleteUserHandler = (userId) => {
+    setNewUser((prevUsers) => {
+      const users = [...prevUsers].filter((user) => user.id !== userId);
+      if (users.length === 0) {
+        setEmptyList(true);
+        setNewUser([]);
+      } else {
+        return users;
+      }
+    });
+  };
+
+  const validatedSaveUserDataHandler = (enteredUserData) => {
+    if (enteredUserData.userName.toString().trim().length === 0) {
+      setErrorState({
+        title: "Invalid Name",
+        message: "Name field cannot be empty",
+      });
+    } else if (
       enteredUserData.userAge <= 0 ||
       enteredUserData.userAge.trim() === 0 ||
       isNaN(Number(enteredUserData.userAge))
@@ -25,16 +44,23 @@ function App() {
         title: "Invalid age",
         message: "Age must be a number",
       });
+    } else {
+      setEmptyList(false);
+      setNewUser((prevUsers) => {
+        return [...prevUsers, enteredUserData];
+      });
     }
-
-    setNewUser((prevUsers) => {
-      return [...prevUsers, enteredUserData];
-    });
   };
 
   const removeErrorHandler = () => {
     setErrorState("");
   };
+
+  const emptyListSytuation = emptyList ? (
+    <EmptyList />
+  ) : (
+    <UserList users={newUser} deleteUser={deleteUserHandler} />
+  );
 
   return (
     <div>
@@ -45,8 +71,8 @@ function App() {
           message={errorState.message}
         />
       )}
-      <UserForm onSaveUserData={saveUserDataHandler} />
-      <UserList users={newUser} />
+      <UserForm onSaveUserData={validatedSaveUserDataHandler} />
+      {emptyListSytuation}
     </div>
   );
 }

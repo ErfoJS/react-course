@@ -1,0 +1,9 @@
+.emptyList {
+    border-radius: 12px;
+    align-items: center;
+    padding: 11px;
+    margin: 0 auto;
+    width: 45rem;
+    max-width: 95%;
+    background: rgb(255, 255, 255);
+}

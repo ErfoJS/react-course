@@ -8,7 +8,9 @@ const UserList = (props) => {
         <UserInfo
           userName={user.userName}
           userAge={user.userAge}
+          userId={user.id}
           key={Math.random().toString()}
+          deleteUser={props.deleteUser}
         />
       ))}
     </div>
