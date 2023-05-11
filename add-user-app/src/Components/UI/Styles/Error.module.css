@@ -1,4 +1,4 @@
-.error backdrop {
+.backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -71,6 +71,6 @@
 }
 
 .errorButton button.alternative:hover,
-.errorButton button.alternative:active {
+.erroerrorButton button.alternative:active {
     background-color: #ddb3f8;
 }
