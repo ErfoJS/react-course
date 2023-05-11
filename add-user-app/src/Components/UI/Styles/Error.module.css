@@ -1,4 +1,4 @@
-.backdrop {
+.error backdrop {
     position: fixed;
     top: 0;
     left: 0;
@@ -45,4 +45,32 @@
         left: calc(50% - 20rem);
         width: 40rem;
     }
+}
+
+.errorButton button {
+    font: inherit;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    border-radius: 12px;
+    margin-right: 1rem;
+}
+
+.errorButton button:hover,
+.errorButton button:active {
+    background-color: #510674;
+    border-color: #510674;
+}
+
+.errorButton button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.errorButton button.alternative:hover,
+.errorButton button.alternative:active {
+    background-color: #ddb3f8;
 }

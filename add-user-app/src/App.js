@@ -22,7 +22,6 @@ function App() {
       const users = [...prevUsers].filter((user) => user.id !== userId);
       if (users.length === 0) {
         setEmptyList(true);
-        setNewUser([]);
       } else {
         return users;
       }
@@ -30,6 +29,9 @@ function App() {
   };
 
   const validatedSaveUserDataHandler = (enteredUserData) => {
+    if (typeof newUser === "undefined") {
+      setNewUser([]);
+    }
     if (enteredUserData.userName.toString().trim().length === 0) {
       setErrorState({
         title: "Invalid Name",
