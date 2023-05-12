@@ -16,8 +16,6 @@ function App() {
   const [newUser, setNewUser] = useState(USERS_LIST_INITIAL);
   const [errorState, setErrorState] = useState("");
   const [emptyList, setEmptyList] = useState(false);
-  const [nameInputClearer, setNameInputClearer] = useState(false);
-  const [ageInputClearer, setAgeInputClearer] = useState(false);
 
   const deleteUserHandler = (userId) => {
     setNewUser((prevUsers) => {
@@ -35,34 +33,9 @@ function App() {
     console.log(errorState);
   };
 
-  // const isUserDataValid = (enteredUserData) => {
-  //   if (enteredUserData.userName.toString().trim().length === 0) {
-  //     setErrorState({
-  //       title: "Invalid Name",
-  //       message: "Name field cannot be empty",
-  //     });
-  //     setNameInputClearer(true);
-  //     return false;
-  //   } else if (
-  //     enteredUserData.userAge <= 0 ||
-  //     enteredUserData.userAge.trim() === 0 ||
-  //     isNaN(Number(enteredUserData.userAge))
-  //   ) {
-  //     setErrorState({
-  //       title: "Invalid age",
-  //       message: "Age must be a number",
-  //     });
-  //     setAgeInputClearer(true);
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // };
-
   const SaveUserDataHandler = (enteredUserData) => {
     if (typeof newUser === "undefined") {
       setNewUser([]);
-    } else {
       setEmptyList(false);
       setNewUser((prevUsers) => {
         return [...prevUsers, enteredUserData];
