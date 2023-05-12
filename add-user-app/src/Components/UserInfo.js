@@ -1,16 +1,14 @@
 import styles from "./Styles/UserInfo.module.css";
 
 const UserInfo = (props) => {
-  const deleteHandler = () => {
-    props.deleteUser(props.userId);
+  const deleteUserHandler = () => {
+    props.onDeleteUser(props.userId);
   };
 
   return (
-    <div>
-      <div className={styles.userInfoSpace}>
-        <div onClick={deleteHandler} className={styles.userInfoBorder}>
-          {props.userName} ({props.userAge} years old)
-        </div>
+    <div className={styles.userInfoSpace}>
+      <div onClick={deleteUserHandler} className={styles.userInfoBorder}>
+        {props.userName} ({props.userAge} years old)
       </div>
     </div>
   );

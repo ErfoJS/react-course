@@ -7,14 +7,14 @@ import EmptyList from "./Components/EmptyList";
 const USERS_LIST_INITIAL = [
   {
     id: Math.random().toString(),
-    userName: "Franek",
+    userName: "Scot",
     userAge: "22",
   },
 ];
 
 function App() {
   const [newUser, setNewUser] = useState(USERS_LIST_INITIAL);
-  const [errorState, setErrorState] = useState("");
+  const [errorState, setErrorState] = useState(false);
   const [emptyList, setEmptyList] = useState(false);
 
   const deleteUserHandler = (userId) => {
@@ -28,11 +28,6 @@ function App() {
     });
   };
 
-  const errorStateHandler = (error) => {
-    setErrorState(error);
-    console.log(errorState);
-  };
-
   const SaveUserDataHandler = (enteredUserData) => {
     if (typeof newUser === "undefined") {
       setNewUser([]);
@@ -43,30 +38,34 @@ function App() {
     });
   };
 
-  const removeErrorHandler = () => {
-    setErrorState("");
+  const invalidInputHandler = (error) => {
+    setErrorState(error);
   };
 
-  const emptyListSytuation = emptyList ? (
+  const removeErrorHandler = () => {
+    setErrorState(false);
+  };
+
+  const userListDisplay = emptyList ? (
     <EmptyList />
   ) : (
-    <UserList users={newUser} deleteUser={deleteUserHandler} />
+    <UserList users={newUser} onDeleteUser={deleteUserHandler} />
   );
 
   return (
     <div>
       {errorState && (
         <Error
-          errorRemover={removeErrorHandler}
+          onRemoveError={removeErrorHandler}
           title={errorState.title}
           message={errorState.message}
         />
       )}
       <UserForm
         onSaveUserData={SaveUserDataHandler}
-        errorState={errorStateHandler}
+        onInvalidInput={invalidInputHandler}
       />
-      {emptyListSytuation}
+      {userListDisplay}
     </div>
   );
 }

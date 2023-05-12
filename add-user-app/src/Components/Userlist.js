@@ -10,7 +10,7 @@ const UserList = (props) => {
           userAge={user.userAge}
           userId={user.id}
           key={Math.random().toString()}
-          deleteUser={props.deleteUser}
+          onDeleteUser={props.onDeleteUser}
         />
       ))}
     </div>

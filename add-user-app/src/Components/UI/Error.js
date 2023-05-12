@@ -13,7 +13,7 @@ const Error = (props) => {
 
         <footer className={styles.actions}>
           <div className={styles.errorButton}>
-            <button onClick={props.errorRemover}>Okay</button>
+            <button onClick={props.onRemoveError}>Okay</button>
           </div>
         </footer>
       </div>

@@ -23,31 +23,33 @@ const UserForm = (props) => {
       userName: enteredName,
       userAge: enteredAge,
     };
+    if (UserDataValidation(props, userData)) {
+      props.onSaveUserData(userData);
+      setEnteredAge("");
+      setEnteredName("");
+    }
+  };
 
-    const isUserDataValid = (props) => {
-      if (userData.userName.toString().trim().length === 0) {
-        props.errorState({
-          title: "Invalid Name",
-          message: "Name field cannot be empty",
-        });
-        setEnteredName("");
-      } else if (
-        userData.userAge <= 0 ||
-        userData.userAge.trim() === 0 ||
-        isNaN(Number(userData.userAge))
-      ) {
-        props.errorState({
-          title: "Invalid age",
-          message: "Age must be a number",
-        });
-        setEnteredAge("");
-      } else {
-        props.onSaveUserData(userData);
-        setEnteredAge("");
-        setEnteredName("");
-      }
-    };
-    isUserDataValid(props);
+  const UserDataValidation = (props, userData) => {
+    if (userData.userName.toString().trim().length === 0) {
+      props.onInvalidInput({
+        title: "Invalid Name",
+        message: "Name field cannot be empty",
+      });
+      setEnteredName("");
+    } else if (
+      userData.userAge <= 0 ||
+      userData.userAge.trim() === 0 ||
+      isNaN(Number(userData.userAge))
+    ) {
+      props.onInvalidInput({
+        title: "Invalid age",
+        message: "Age must be a number",
+      });
+      setEnteredAge("");
+    } else {
+      return true;
+    }
   };
 
   return (
