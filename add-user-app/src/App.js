@@ -36,11 +36,11 @@ function App() {
   const SaveUserDataHandler = (enteredUserData) => {
     if (typeof newUser === "undefined") {
       setNewUser([]);
-      setEmptyList(false);
-      setNewUser((prevUsers) => {
-        return [...prevUsers, enteredUserData];
-      });
     }
+    setEmptyList(false);
+    setNewUser((prevUsers) => {
+      return [...prevUsers, enteredUserData];
+    });
   };
 
   const removeErrorHandler = () => {
