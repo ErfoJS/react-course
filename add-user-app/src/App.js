@@ -3,6 +3,7 @@ import UserForm from "./Components/UserForm";
 import UserList from "./Components/Userlist";
 import Error from "./Components/UI/Error";
 import EmptyList from "./Components/EmptyList";
+import Wrapper from "./Components/Helpers/Wrapper";
 
 const USERS_LIST_INITIAL = [
   {
@@ -53,7 +54,7 @@ function App() {
   );
 
   return (
-    <div>
+    <Wrapper>
       {errorState && (
         <Error
           onRemoveError={removeErrorHandler}
@@ -66,7 +67,7 @@ function App() {
         onInvalidInput={invalidInputHandler}
       />
       {userListDisplay}
-    </div>
+    </Wrapper>
   );
 }
 
