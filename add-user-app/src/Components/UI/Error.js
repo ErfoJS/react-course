@@ -1,7 +1,8 @@
 import styles from "./Styles/Error.module.css";
+import Button from "./Button";
 const Error = (props) => {
   return (
-    <div className={styles.backdrop}>
+    <div className={styles.backdrop} onClick={props.onRemoveError}>
       <div></div>
       <div className={styles.modal}>
         <header className={styles.header}>
@@ -13,7 +14,7 @@ const Error = (props) => {
 
         <footer className={styles.actions}>
           <div className={styles.errorButton}>
-            <button onClick={props.onRemoveError}>Okay</button>
+            <Button onClick={props.onRemoveError}>Okay</Button>
           </div>
         </footer>
       </div>

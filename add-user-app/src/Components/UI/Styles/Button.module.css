@@ -1,0 +1,28 @@
+.button {
+    font: inherit;
+    cursor: pointer;
+    padding: 6px 1rem;
+    border: 1px solid #40005d;
+    background-color: #40005d;
+    color: white;
+    margin-right: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.button:hover,
+.button:active {
+    background-color: #510674;
+    border-color: #510674;
+}
+
+.button.alternative {
+    color: #220131;
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.button.alternative:hover,
+.button.alternative:active {
+    background-color: #ddb3f8;
+}
