@@ -1,35 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import styles from "./Styles/UserForm.module.css";
 import Button from "../Components/UI/Button";
 
 const UserForm = (props) => {
-  const [enteredName, setEnteredName] = useState("");
-  const [enteredAge, setEnteredAge] = useState("");
-
-  const usernametHandler = (event) => {
-    event.preventDefault();
-    setEnteredName(event.target.value);
-  };
-
-  const userAgeHandler = (event) => {
-    event.preventDefault();
-    setEnteredAge(event.target.value);
-  };
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    const userData = {
-      id: Math.random().toString(),
-      userName: enteredName,
-      userAge: enteredAge,
-    };
-    if (UserDataValidation(props, userData)) {
-      props.onSaveUserData(userData);
-      setEnteredAge("");
-      setEnteredName("");
-    }
-  };
+  const enteredNameRef = useRef();
+  const enteredAgeRef = useRef();
 
   const UserDataValidation = (props, userData) => {
     if (userData.userName.toString().trim().length === 0) {
@@ -37,7 +12,6 @@ const UserForm = (props) => {
         title: "Invalid Name",
         message: "Name field cannot be empty",
       });
-      setEnteredName("");
     } else if (
       userData.userAge <= 0 ||
       userData.userAge.trim() === 0 ||
@@ -47,10 +21,23 @@ const UserForm = (props) => {
         title: "Invalid age",
         message: "Age must be a number",
       });
-      setEnteredAge("");
     } else {
       return true;
     }
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+    const userData = {
+      id: Math.random().toString(),
+      userName: enteredNameRef.current.value,
+      userAge: enteredAgeRef.current.value,
+    };
+    if (UserDataValidation(props, userData)) {
+      props.onSaveUserData(userData);
+    }
+    enteredAgeRef.current.value = "";
+    enteredNameRef.current.value = "";
   };
 
   return (
@@ -59,22 +46,12 @@ const UserForm = (props) => {
         <div>
           <div className={styles.form}>
             <label className={styles.label}>Username</label>
-            <input
-              value={enteredName}
-              onChange={usernametHandler}
-              className={styles.input}
-              type="text"
-            />
+            <input className={styles.input} type="text" ref={enteredNameRef} />
           </div>
 
           <div className={styles.form}>
             <label className={styles.label}>Age (Years)</label>
-            <input
-              value={enteredAge}
-              onChange={userAgeHandler}
-              className={styles.input}
-              type="text"
-            />
+            <input className={styles.input} type="text" ref={enteredAgeRef} />
           </div>
           <Button type="submit">Add User</Button>
         </div>
