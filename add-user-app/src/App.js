@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import UserForm from "./Components/UserForm";
 import UserList from "./Components/Userlist";
 import Error from "./Components/UI/Error";
@@ -54,7 +54,7 @@ function App() {
   );
 
   return (
-    <Wrapper>
+    <>
       {errorState && (
         <Error
           onRemoveError={removeErrorHandler}
@@ -67,7 +67,7 @@ function App() {
         onInvalidInput={invalidInputHandler}
       />
       {userListDisplay}
-    </Wrapper>
+    </>
   );
 }
 
