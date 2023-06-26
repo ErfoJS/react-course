@@ -9,10 +9,7 @@ function App() {
   return (
     <React.Fragment>
       <MainHeader />
-      <main>
-        {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
-      </main>
+      <main>{!ctx.isLoggedIn ? <Login /> : <Home />}</main>
     </React.Fragment>
   );
 }
