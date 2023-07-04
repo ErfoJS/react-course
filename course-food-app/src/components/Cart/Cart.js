@@ -9,8 +9,12 @@ const Cart = (props) => {
   const totalAmount = `$${orderedMealsCtx.totalAmount.toFixed(2)}`;
   const isItemInCard = orderedMealsCtx.items.length > 0;
 
-  const cartItemRemoveHandler = () => {};
-  const cartItemAddHandler = () => {};
+  const cartItemRemoveHandler = (id) => {
+    orderedMealsCtx.removeItem(id);
+  };
+  const cartItemAddHandler = (item) => {
+    orderedMealsCtx.addItemInModal(item);
+  };
 
   const cartItems = (
     <ul className={classes["cart-items"]}>
